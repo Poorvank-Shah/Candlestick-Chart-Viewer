@@ -1,5 +1,5 @@
 // src/services/ApiService.js
-// const BASE_URL = process.env.SERVER_URL || 'http://localhost:5000/'
+// const BASE_URL = 'http://localhost:5000/'
 const BASE_URL = 'https://chart-viewer-api.onrender.com/'
 console.log(BASE_URL)
 class ApiService {
@@ -12,6 +12,7 @@ class ApiService {
             const parsedData = parseData(data);
             // console.log(parsedData)
             return parsedData;
+
         } catch (error) {
             console.error('Error fetching historical data:', error.message);
             throw new Error('Failed to fetch historical data');
@@ -37,7 +38,7 @@ class ApiService {
 
         try {
             const response = await fetch(apiUrl);
-            console.log(response)
+            // console.log(response)
             const data = await response.json();
             // console.log(data);
             return data;
@@ -54,7 +55,7 @@ class ApiService {
         try {
             const response = await fetch(apiUrl);
             const data = await response.json();
-            // console.log(data)
+            // console.log(typeof(data))
             const filteredData = filterMarket(data);
             // console.log(filteredData)
             return filteredData;
