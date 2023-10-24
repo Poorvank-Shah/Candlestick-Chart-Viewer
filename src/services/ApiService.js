@@ -1,5 +1,6 @@
 // src/services/ApiService.js
-const BASE_URL = process.env.SERVER_URL || 'http://localhost:5000/'
+// const BASE_URL = process.env.SERVER_URL || 'http://localhost:5000/'
+const BASE_URL = 'https://chart-viewer-api.onrender.com/'
 console.log(BASE_URL)
 class ApiService {
     static async getHistoricalData(symbol, timeframe) {
