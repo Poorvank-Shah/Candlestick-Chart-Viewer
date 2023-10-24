@@ -18,6 +18,10 @@ const TimeframeButton = styled.button`
   outline: none;
   padding: 5px;
   cursor: pointer;
+  background: #b7b7b7c9;
+  border: none;
+  border-radius: 5px;
+  margin: 0px 5px;
   
   @media (max-width: 380px) {
     margin-right: 3px;

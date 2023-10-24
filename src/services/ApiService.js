@@ -1,6 +1,7 @@
 // src/services/ApiService.js
-// const BASE_URL = 'http://localhost:5000/'
-const BASE_URL = 'https://chart-viewer-api.onrender.com/'
+const BASE_URL = 'http://localhost:5000/'
+// const BASE_URL = 'https://chart-viewer-api.onrender.com/'
+// const BASE_URL = process.env.REACT_APP_BASE_URL || 'https://chart-viewer-api.onrender.com/';
 console.log(BASE_URL)
 class ApiService {
     static async getHistoricalData(symbol, timeframe) {
@@ -54,11 +55,17 @@ class ApiService {
 
         try {
             const response = await fetch(apiUrl);
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
             const data = await response.json();
-            // console.log(typeof(data))
-            const filteredData = filterMarket(data);
-            // console.log(filteredData)
+            console.log(data)
+            const filteredData = filterMarket(data["markets"]);
+            console.log(filteredData);
             return filteredData;
+
         } catch (error) {
             console.error('Error fetching Global Market Status', error.message);
             throw new Error('Failed to fetch Global Market Status');

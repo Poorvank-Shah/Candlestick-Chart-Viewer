@@ -21,8 +21,8 @@ const InputWrapper = styled.div`
   border: none;
   border-radius: 10px;
   padding: 0 15px;
-  box-shadow: 0px 0px 8px rgb(92, 87, 87);
-  background-color: white;
+  /* box-shadow: 0px 0px 8px rgb(92, 87, 87); */
+  background-color: #c1c1c1bf;
   display: flex;
   align-items: center;
   box-sizing: border-box;

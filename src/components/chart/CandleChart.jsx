@@ -12,7 +12,7 @@ import CompanyOverview from '../overview/companyOverview';
 const MainContainer = styled.div`
   width: 100%;
   height: 100%;
-  background-color: #00ff8d99;
+  background-color: white;
   display: flex;
   padding: 2vh;
   padding-top: 0;
@@ -43,7 +43,7 @@ const Box1 = styled.div`
   box-sizing: border-box;
   border: 1px solid black;
   border-radius: 2px;
-  box-shadow: 0px 0px 8px rgb(66, 66, 66);
+//   box-shadow: 0px 0px 8px rgb(66, 66, 66);
 
   /* @media (max-width: 380px) {
     border: none;
@@ -121,7 +121,7 @@ const CandleChart = () => {
 
         fetchHistoricalData();
 
-        const socket = new WebSocket('ws://localhost:5000');
+        const socket = new WebSocket('wss://chart-viewer-api.onrender.com/');
 
         socket.addEventListener('open', () => {
             socket.send(JSON.stringify({ timeframe: timeframe, lastValue: historicalData[historicalData.length - 1] }));
@@ -138,7 +138,9 @@ const CandleChart = () => {
         });
 
         return () => {
-            socket.close();
+            if (socket.readyState === WebSocket.OPEN) {
+                socket.close();
+            }
             setLiveData([]);
         };
     }, [symbol, timeframe]);
@@ -269,7 +271,7 @@ const CandleChart = () => {
                             style={{
                                 paddingLeft: '15px',
                                 boxSizing: 'border-box',
-                                fontWeight: '500',
+                                fontWeight: '700',
                                 width: 'auto',
                                 flex: '1'
                             }}

@@ -8,8 +8,8 @@ const NavContainer = styled.div`
   height: 50px;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(117 255 250 / 47%);
-  color: #0e0741;
+  background-color: rgb(0,0,0);
+  color: #fff;
   padding: 1px;
   box-sizing: border-box;
 
@@ -35,7 +35,7 @@ const Logo = styled.div`
 
   img {
     padding: 2px;
-    height: 45px;
+    height: 40px;
     width: auto;
     border-radius: 30px;
   }
@@ -92,6 +92,7 @@ const MarqueeSpan = styled.span`
   margin-right: 30px;
   font-size: 15px;
   font-weight: bold;
+  color: white;
 `;
 
 const Navbar = () => {
@@ -128,7 +129,7 @@ const Navbar = () => {
                 <MarqueeContainer>
                     <MarqueeContent>
                         {globalStatus.map((info) => {
-                            const color = info.current_status === 'open' ? 'green' : 'red';
+                            const color = info.current_status === 'open' ? '#03ff03' : 'red';
                             return (
                                 <MarqueeSpan key={info.primary_exchange}>
                                     {info.primary_exchange}:{' '}

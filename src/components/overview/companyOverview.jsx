@@ -4,17 +4,18 @@ import styled from 'styled-components';
 // Styled components
 const OverviewContainer = styled.div`
   max-width: 100%;
-  background-color: #ffa80054;
+  background-color: white;
 `;
 
 const CompanyOverviewWrapper = styled.div`
-  color: #730000;
+  color: #000;
   max-width: 80%;
   margin: 0 auto;
-  padding: 10px;
-  background-color: #ffd0748a;
-  border-radius: 20px;
+  margin-top: 10px;
+  padding: 25px;
+  background-color: #d2d2d2;
   text-align: center;
+
   @media (max-width: 380px) {
     max-width: 90%;
   }
