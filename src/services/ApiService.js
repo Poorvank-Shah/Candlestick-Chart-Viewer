@@ -1,7 +1,7 @@
 // src/services/ApiService.js
-const BASE_URL = 'http://localhost:5000/'
+// const BASE_URL = 'http://localhost:5000/'
 // const BASE_URL = 'https://chart-viewer-api.onrender.com/'
-// const BASE_URL = process.env.REACT_APP_BASE_URL || 'https://chart-viewer-api.onrender.com/';
+const BASE_URL = process.env.REACT_APP_BASE_URL || 'https://chart-viewer-api.onrender.com/';
 console.log(BASE_URL)
 class ApiService {
     static async getHistoricalData(symbol, timeframe) {
