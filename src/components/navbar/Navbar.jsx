@@ -128,7 +128,7 @@ const Navbar = () => {
             <NavSearch>
                 <MarqueeContainer>
                     <MarqueeContent>
-                        {globalStatus.map((info) => {
+                        {globalStatus?.map((info) => {
                             const color = info.current_status === 'open' ? '#03ff03' : 'red';
                             return (
                                 <MarqueeSpan key={info.primary_exchange}>

@@ -53,7 +53,7 @@ const TableCell = styled.div`
 const Warning = styled.div`
   color: #ff0000;
   text-align: center;
-  font-size: 16px;
+  font-size: 20px;
 `;
 
 const CompanyOverview = ({ data }) => {
