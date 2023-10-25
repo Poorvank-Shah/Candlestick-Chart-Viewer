@@ -93,7 +93,7 @@ const SearchToolbar = ({ onCompanySelect }) => {
     const handleSearch = async () => {
         try {
             const response = await ApiService.searchKeyword(keyword);
-            console.log(response);
+            // console.log(response);
             setSearchResults(response);
         } catch (error) {
             console.error('Error fetching search results:', error.message);

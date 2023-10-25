@@ -1,8 +1,8 @@
 // src/services/ApiService.js
 // const BASE_URL = 'http://localhost:5000/'
 // const BASE_URL = 'https://chart-viewer-api.onrender.com/'
-const BASE_URL = process.env.REACT_APP_BASE_URL || 'https://chart-viewer-api.onrender.com/';
-console.log(BASE_URL)
+const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:5000/';
+console.log("Api Server: ",BASE_URL)
 class ApiService {
     static async getHistoricalData(symbol, timeframe) {
         const apiUrl = `${BASE_URL}api/historical-data/${symbol}/${timeframe}`;
@@ -50,7 +50,7 @@ class ApiService {
     }
 
     static async globalMarketStatus() {
-        console.log("requesting markte status")
+        // console.log("requesting markte status")
         const apiUrl = `${BASE_URL}api/globalstatus`;
 
         try {
@@ -61,9 +61,9 @@ class ApiService {
             }
 
             const data = await response.json();
-            console.log(data)
+            // console.log(data)
             const filteredData = filterMarket(data["markets"]);
-            console.log(filteredData);
+            // console.log(filteredData);
             return filteredData;
 
         } catch (error) {
@@ -88,9 +88,9 @@ const parseData = (originalData) => {
 const filterMarket = (marketData) => {
     const regionsToExtract = ["Canada", "United States", "India", "United Kingdom"];
 
-    const filteredData = marketData.filter(market => regionsToExtract.includes(market.region));
+    const filteredData = marketData?.filter(market => regionsToExtract.includes(market.region));
 
-    const extractedInfo = filteredData.map(market => ({
+    const extractedInfo = filteredData?.map(market => ({
         primary_exchange: market.primary_exchanges,
         current_status: market.current_status
     }));

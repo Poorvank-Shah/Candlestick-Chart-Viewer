@@ -14,15 +14,15 @@ const MainContainer = styled.div`
   height: 100%;
   background-color: white;
   display: flex;
-  padding: 2vh;
+  padding: 1.5vh;
   padding-top: 0;
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
 
-  /* @media (max-width: 380px) {
-    padding: 1vh;
-  } */
+//   @media (max-width: 380px) {
+//     padding: 1vh;
+//   } 
 `;
 
 const Toolbar = styled.div`
@@ -77,6 +77,11 @@ const InfoBox = styled.div`
 
 const InfoItem = styled.div`
   margin-right: 10px;
+
+  @media (max-width: 380px) {
+    margin-right: 5px;
+    font-size: 13px;
+  }
 `;
 
 const StyledFlexContainer = styled.div`
@@ -129,7 +134,7 @@ const CandleChart = () => {
 
         socket.addEventListener('message', (event) => {
             const receivedMessage = JSON.parse(event.data).liveData;
-            console.log(receivedMessage)
+            // console.log(receivedMessage)
             setLiveData((prevMessages) => [...prevMessages, receivedMessage]);
         });
 
