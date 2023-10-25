@@ -1,11 +1,9 @@
 // src/services/ApiService.js
-// const BASE_URL = 'http://localhost:5000/'
-// const BASE_URL = 'https://chart-viewer-api.onrender.com/'
-const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:5000/';
+const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:5000';
 console.log("Api Server: ",BASE_URL)
 class ApiService {
     static async getHistoricalData(symbol, timeframe) {
-        const apiUrl = `${BASE_URL}api/historical-data/${symbol}/${timeframe}`;
+        const apiUrl = `${BASE_URL}/api/historical-data/${symbol}/${timeframe}`;
 
         try {
             const response = await fetch(apiUrl);
@@ -21,7 +19,7 @@ class ApiService {
     }
 
     static async searchKeyword(keyword) {
-        const apiUrl = `${BASE_URL}api/search/${keyword}`;
+        const apiUrl = `${BASE_URL}/api/search/${keyword}`;
 
         try {
             const response = await fetch(apiUrl);
@@ -35,7 +33,7 @@ class ApiService {
     }
 
     static async companyOverview(symbol) {
-        const apiUrl = `${BASE_URL}api/overview/${symbol}`;
+        const apiUrl = `${BASE_URL}/api/overview/${symbol}`;
 
         try {
             const response = await fetch(apiUrl);
@@ -51,7 +49,7 @@ class ApiService {
 
     static async globalMarketStatus() {
         // console.log("requesting markte status")
-        const apiUrl = `${BASE_URL}api/globalstatus`;
+        const apiUrl = `${BASE_URL}/api/globalstatus`;
 
         try {
             const response = await fetch(apiUrl);
