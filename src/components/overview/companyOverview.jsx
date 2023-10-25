@@ -54,6 +54,10 @@ const Warning = styled.div`
   color: #ff0000;
   text-align: center;
   font-size: 20px;
+
+  @media (max-width:380px) {
+   font-size : 15px;
+  }
 `;
 
 const CompanyOverview = ({ data }) => {
