@@ -1,6 +1,7 @@
 // src/services/ApiService.js
 const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:5000';
-console.log("Api Server: ",BASE_URL)
+// const BASE_URL = 'http://localhost:5000';
+console.log("Api Server: ", BASE_URL)
 class ApiService {
     static async getHistoricalData(symbol, timeframe) {
         const apiUrl = `${BASE_URL}/api/historical-data/${symbol}/${timeframe}`;
@@ -89,6 +90,8 @@ const parseData = (originalData) => {
         const volumeEntry = {
             value: parseFloat(dataEntry["5. volume"]),
             time: new Date(timestamp).getTime() / 1000,
+            color: ohlcEntry.open > ohlcEntry.close ? "#ef5350" : "#26a69a"
+
         };
 
         ohlcData.push(ohlcEntry);
