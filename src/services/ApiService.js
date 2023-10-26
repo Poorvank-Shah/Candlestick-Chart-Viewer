@@ -74,13 +74,31 @@ class ApiService {
 }
 
 const parseData = (originalData) => {
-    return Object.entries(originalData).map(([timestamp, dataEntry]) => ({
-        open: parseFloat(dataEntry["1. open"]),
-        high: parseFloat(dataEntry["2. high"]),
-        low: parseFloat(dataEntry["3. low"]),
-        close: parseFloat(dataEntry["4. close"]),
-        time: new Date(timestamp).getTime() / 1000,
-    }));
+    const ohlcData = [];
+    const volumeData = [];
+
+    Object.entries(originalData).forEach(([timestamp, dataEntry]) => {
+        const ohlcEntry = {
+            open: parseFloat(dataEntry["1. open"]),
+            high: parseFloat(dataEntry["2. high"]),
+            low: parseFloat(dataEntry["3. low"]),
+            close: parseFloat(dataEntry["4. close"]),
+            time: new Date(timestamp).getTime() / 1000,
+        };
+
+        const volumeEntry = {
+            value: parseFloat(dataEntry["5. volume"]),
+            time: new Date(timestamp).getTime() / 1000,
+        };
+
+        ohlcData.push(ohlcEntry);
+        volumeData.push(volumeEntry);
+    });
+
+    ohlcData.reverse();
+    volumeData.reverse();
+
+    return [ohlcData, volumeData];
 };
 
 const filterMarket = (marketData) => {
