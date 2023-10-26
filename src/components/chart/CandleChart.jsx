@@ -134,8 +134,8 @@ const CandleChart = () => {
 
         fetchHistoricalData();
 
-        const socket = new WebSocket('wss://chart-viewer-api.onrender.com/');
-        // const socket = new WebSocket('ws://localhost:5000/');
+        // const socket = new WebSocket('wss://chart-viewer-api.onrender.com/');
+        const socket = new WebSocket('ws://localhost:5000/');
 
 
         socket.addEventListener('open', () => {
