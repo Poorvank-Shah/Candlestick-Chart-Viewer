@@ -269,13 +269,6 @@ const CandleChart = () => {
             },
         });
 
-       candleStickSeries.priceScale().applyOptions({
-            scaleMargins: {
-                top: 0.1, // positioning the price scale for the area series
-                bottom: 0.4,
-            },
-        })
-
         const combinedData = [...historicalData, ...liveData];
         candleStickSeries.setData(combinedData[0]);
         volumeSeries.setData(combinedData[1]);
