@@ -71,7 +71,7 @@ const InfoContainer = styled.div`
 
 const InfoBox = styled.div`
   display: flex;
-  color: ${({ isnegative }) => (isnegative === 'true' ? 'red' : 'green')};
+  color: ${({ iscolour }) => (iscolour)};
   font-weight: bold;
 `;
 
@@ -80,7 +80,7 @@ const InfoItem = styled.div`
 
   @media (max-width: 380px) {
     margin-right: 5px;
-    font-size: 13px;
+    font-size: 12px;
   }
 `;
 
@@ -112,7 +112,7 @@ const CandleChart = () => {
     const [overview, setOverview] = useState('AMZN');
     const [timeframe, setTimeframe] = useState('Daily');
     const [historicalData, setHistoricalData] = useState(amazonInitialData);
-    const [liveData, setLiveData] = useState([]);
+    const [liveData, setLiveData] = useState([[],[]]);
     const [candlePrice, setCandlePrice] = useState(null);
 
     const chartContainerRef = useRef();
@@ -136,13 +136,32 @@ const CandleChart = () => {
 
 
         socket.addEventListener('open', () => {
-            socket.send(JSON.stringify({ timeframe: timeframe, lastValue: historicalData[historicalData.length - 1] }));
+
+            const lastValue0 = historicalData[0][historicalData[0].length - 1];
+            const lastValue1 = historicalData[1][historicalData[1].length - 1];
+
+            const message = {
+                timeframe: timeframe,
+                lastValue: [lastValue0, lastValue1]
+            };
+            // console.log("message for livedata", message)
+            socket.send(JSON.stringify(message));
+
+            // socket.send(JSON.stringify({ timeframe: timeframe, lastValue: historicalData[historicalData.length - 1] }));
         });
 
         socket.addEventListener('message', (event) => {
             const receivedMessage = JSON.parse(event.data).liveData;
-            // console.log(receivedMessage)
-            setLiveData((prevMessages) => [...prevMessages, receivedMessage]);
+            // console.log(receivedMessage);
+
+            setHistoricalData((prevHistoricalData) => {
+                const combinedData = [...prevHistoricalData[0], receivedMessage[0]];
+                const combinedData1 = [...prevHistoricalData[1], receivedMessage[1]]
+                const finalCombine = [combinedData , combinedData1]
+                return finalCombine;
+            });
+
+            // setLiveData((prevMessages) => [...prevMessages, receivedMessage]);
         });
 
         socket.addEventListener('close', () => {
@@ -153,7 +172,8 @@ const CandleChart = () => {
             if (socket.readyState === WebSocket.OPEN) {
                 socket.close();
             }
-            setLiveData([]);
+            // setLiveData([]);
+            setHistoricalData(amazonInitialData);
         };
     }, [symbol, timeframe]);
 
@@ -269,13 +289,16 @@ const CandleChart = () => {
             },
         });
 
-        const combinedData = [...historicalData, ...liveData];
-        candleStickSeries.setData(combinedData[0]);
-        volumeSeries.setData(combinedData[1]);
+
+        // const combinedData = [...historicalData, ...liveData];
+
+        // console.log(historicalData)
+        candleStickSeries.setData(historicalData[0]);
+        volumeSeries.setData(historicalData[1]);
 
         chart.subscribeCrosshairMove((param) => {
             if (param.time) {
-                const data = param.seriesData.get(candleStickSeries);
+                const data = { ...param.seriesData.get(candleStickSeries), ...param.seriesData.get(volumeSeries) };
                 setCandlePrice(data);
 
                 // if (tooltipRef.current) {
@@ -325,11 +348,14 @@ const CandleChart = () => {
                 <Box1>
                     <ChartContainer ref={chartContainerRef}>
                         <InfoContainer>
-                            <InfoBox isnegative={candlePrice?.open > candlePrice?.close ? 'true' : 'false'}>
+                            <InfoBox iscolour={candlePrice?.color}>
                                 <InfoItem>O: {candlePrice?.open}</InfoItem>
                                 <InfoItem>H: {candlePrice?.high}</InfoItem>
                                 <InfoItem>L: {candlePrice?.low}</InfoItem>
                                 <InfoItem>C: {candlePrice?.close}</InfoItem>
+                            </InfoBox>
+                            <InfoBox>
+                                <InfoItem>V: {candlePrice?.value}</InfoItem>
                             </InfoBox>
                         </InfoContainer>
                     </ChartContainer>

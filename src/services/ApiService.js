@@ -80,10 +80,10 @@ const parseData = (originalData) => {
 
     Object.entries(originalData).forEach(([timestamp, dataEntry]) => {
         const ohlcEntry = {
-            open: parseFloat(dataEntry["1. open"]),
-            high: parseFloat(dataEntry["2. high"]),
-            low: parseFloat(dataEntry["3. low"]),
-            close: parseFloat(dataEntry["4. close"]),
+            open: parseFloat(dataEntry["1. open"]).toFixed(2),
+            high: parseFloat(dataEntry["2. high"]).toFixed(2),
+            low: parseFloat(dataEntry["3. low"]).toFixed(2),
+            close: parseFloat(dataEntry["4. close"]).toFixed(2),
             time: new Date(timestamp).getTime() / 1000,
         };
 
