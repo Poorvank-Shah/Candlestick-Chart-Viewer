@@ -145,7 +145,7 @@ const CandleChart = () => {
 
         const socket = new WebSocket('wss://chart-viewer-api.onrender.com/');
         // const socket = new WebSocket('ws://localhost:5000/');
-        console.log("WebSocket connection initiated");
+        // console.log("WebSocket connection initiated");
 
         socket.addEventListener('open', () => {
 
@@ -171,13 +171,13 @@ const CandleChart = () => {
                     prevLiveData[0] ? [...prevLiveData[0], receivedMessage0] : [receivedMessage0],
                     prevLiveData[1] ? [...prevLiveData[1], receivedMessage1] : [receivedMessage1]
                 ];
-                console.log("updatedLiveData", updatedLiveData);
+                // console.log("updatedLiveData", updatedLiveData);
                 return updatedLiveData;
             });
         });
 
         socket.addEventListener('close', () => {
-            console.log('Disconnected from WebSocket server');
+            // console.log('Disconnected from WebSocket server');
         });
 
         return () => {
