@@ -121,7 +121,7 @@ const CandleChart = () => {
 
     const chartContainerRef = useRef();
     const tooltipRef = useRef();
-
+    
     useEffect(() => {
         const fetchHistoricalData = async () => {
             try {
@@ -352,6 +352,7 @@ const CandleChart = () => {
                             onCompanySelect={(selected) => {
                                 setSymbol(selected['1. symbol']);
                                 setCompany(selected);
+                                setTimeframe('Daily');
                             }}
                         />
                     </Toolbar>
