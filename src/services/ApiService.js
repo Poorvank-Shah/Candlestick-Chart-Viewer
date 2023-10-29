@@ -80,11 +80,11 @@ const parseData = (originalData) => {
 
     Object.entries(originalData).forEach(([timestamp, dataEntry]) => {
         const ohlcEntry = {
-            open: parseFloat(dataEntry["1. open"]).toFixed(2),
-            high: parseFloat(dataEntry["2. high"]).toFixed(2),
-            low: parseFloat(dataEntry["3. low"]).toFixed(2),
-            close: parseFloat(dataEntry["4. close"]).toFixed(2),
-            time: new Date(timestamp).getTime() / 1000,
+            open: parseFloat(parseFloat(dataEntry["1. open"]).toFixed(2)),
+            high: parseFloat(parseFloat(dataEntry["2. high"]).toFixed(2)),
+            low: parseFloat(parseFloat(dataEntry["3. low"]).toFixed(2)),
+            close: parseFloat(parseFloat(dataEntry["4. close"]).toFixed(2)),
+            time: new Date(timestamp).getTime() / 1000,    
         };
 
         const volumeEntry = {
@@ -103,6 +103,7 @@ const parseData = (originalData) => {
 
     return [ohlcData, volumeData];
 };
+
 const filterMarket = (marketData) => {
     const regionsToExtract = ["Canada", "United States", "India", "United Kingdom"];
 
