@@ -130,8 +130,9 @@ const CandleChart = () => {
                 setHistoricalData(orderedData);
             } catch (error) {
                 console.error('Error fetching historical data:', error.message);
-                alert('Error fetching historical data:', error.message);
+                alert(`Apologies, but the functionality of real-time historical & live data, and other features may be impacted as your daily API request limit has been reached.\nError: ${error.message}`);
             }
+
         };
 
         fetchHistoricalData();
