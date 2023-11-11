@@ -89,6 +89,10 @@ const StyledFlexContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   text-align: center;
+
+  @media (max-width: 380px) {
+    flex-direction: column;
+  }
 `;
 
 const CandleChart = () => {
@@ -291,7 +295,7 @@ const CandleChart = () => {
 
         const volumeSeries = chart.addHistogramSeries({
             priceFormat: {
-                type: 'value',
+                type: 'volume',
             },
             priceScaleId: '', // set as an overlay by setting a blank priceScaleId
         });
