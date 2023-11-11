@@ -25,7 +25,7 @@ const TimeframeButton = styled.button`
   
   @media (max-width: 380px) {
     margin-right: 3px;
-    font-size: 10px;
+    font-size: 12px;
   }
 `;
 

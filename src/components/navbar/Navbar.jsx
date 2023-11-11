@@ -22,6 +22,7 @@ const NavContainer = styled.div`
 const LogoAndTitleContainer = styled.div`
   display: flex;
   align-items: center;
+  padding-top: 3px;
 
   @media (max-width: 380px) {
     width: 100%;
@@ -45,14 +46,13 @@ const NavTitle = styled.div`
   text-align: left;
   font-weight: bolder;
   font-size: 1.5rem;
-  padding-left: 5px;
-  margin-left: 10px; /* Adjust the margin as needed */
+  margin-left: 10px;
 
   @media (max-width: 380px) {
-    margin-left: 0; /* Reset margin for smaller screens */
+    margin-left: 10px;
     text-align: center;
     margin-top: 10px;
-    font-size:1.25rem ;
+    font-size:1rem ;
   }
 `;
 
@@ -122,7 +122,7 @@ const Navbar = () => {
                     />
                 </Logo>
                 <NavTitle>
-                    <span>Candlestick Chart Visualization</span>
+                    <span>Candlestick Chart Viewer</span>
                 </NavTitle>
             </LogoAndTitleContainer>
             <NavSearch>

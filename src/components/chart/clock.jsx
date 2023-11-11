@@ -5,7 +5,7 @@ const ClockContainer = styled.div`
   font-size: 18px;
   /* margin-top: 10px; */
   @media (max-width: 380px) {
-    font-size: 11px;
+    font-size: 12px;
   }
 `;
 
